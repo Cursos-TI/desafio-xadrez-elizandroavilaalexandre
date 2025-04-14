@@ -1,4 +1,68 @@
 #include <stdio.h>
+
+void moverEsquerda(int casas)
+{
+    if(casas>0){
+        printf("esquerda %d\n", casas);
+        moverEsquerda(casas - 1);
+    }
+}
+
+void moverDireita(int casas)
+{
+    if(casas>0){
+        printf("direita %d\n",casas);
+        moverDireita(casas - 1);
+    }
+}
+
+void moverFrente(int casas)
+{
+    if(casas>0){
+        printf("frente %d\n", casas);
+        moverFrente(casas - 1);
+    }
+}
+
+void moverTras(int casas)
+{
+    if(casas>0){
+        printf("tras %d\n", casas);
+        moverTras(casas - 1);
+    }
+}
+
+void moverDiagonalDireitaFrente(int casas)
+{
+    if(casas>0){
+        printf("diagonal direita frente %d\n", casas);
+        moverDiagonalDireitaFrente(casas - 1);
+    }
+}
+void moverDiagonalEsquerdaFrente(int casas)
+{
+    if(casas>0){
+        printf("diagonal esquerda frente %d\n", casas);
+        moverDiagonalEsquerdaFrente(casas - 1);
+    }
+}
+void moverDiagonalEsquerdaTras(int casas)
+{
+    if(casas>0){
+        printf("diagonal esquerda trás %d\n", casas);
+        moverDiagonalEsquerdaTras(casas - 1);
+    }
+}
+void moverDiagonalDireitaTras(int casas)
+{
+    if(casas>0){
+        printf("diagonal direita trás %d\n", casas);
+        moverDiagonalDireitaTras(casas - 1);
+    }
+}
+
+
+
 int main(){
 int peca;
 int direcao;
@@ -14,6 +78,21 @@ printf("******Jogo de Xadrez******\n");
         printf("5 - peão\n");
         printf("6 - rei\n");
         scanf("%d", &peca);
+        
+        for (; peca == 0 || peca >6;)
+        {
+            printf("opção inválida. Tente novamente\n");
+            printf("\n");
+            printf("1 - torre\n");
+            printf("2 - bispo\n");
+            printf("3 - rainha\n");
+            printf("4 - cavalo\n");
+            printf("5 - peão\n");
+            printf("6 - rei\n");
+            scanf("%d", &peca);
+        }
+        
+
 switch (peca)
 {
 case 1:
@@ -24,49 +103,37 @@ case 1:
     printf("2-direita\n");
     printf("3-frente\n");
     printf("4-trás\n");
-    scanf("%d", &direcao);   
+    scanf("%d", &direcao); 
+    printf("\n");  
+    for (; direcao == 0 || direcao >4;)
+        {
+            printf("opção inválida. Tente novamente\n");
+            printf("\n");
+            printf("Escolha a direção da peça (apenas número)\n");
+            printf("1-Esquerda\n");
+            printf("2-direita\n");
+            printf("3-frente\n");
+            printf("4-trás\n");
+            scanf("%d", &direcao);
+        }
     printf("\n");
     printf("\n");
     printf("escolha a quantidade de casas(1 a 7): ");
     scanf("%d", &casas);          
     printf("\n");
-        switch (casas)
+        switch (direcao)
         {
         case 1:
-            contador = 1;
-            while (contador <= casas)
-            {
-            printf("Torre - esquerda %d\n", contador);
-            contador ++;
-             }
-        
+            moverEsquerda(casas);        
             break;
         case 2:
-             contador = 1;
-            while (contador <= casas)
-            {
-            printf("Torre - direita %d\n", contador);
-            contador ++;
-            }
-            
+            moverDireita(casas);           
             break;        
         case 3:
-             contador = 1;
-             while (contador <= casas)
-            {
-            printf("Torre - frente %d\n", contador);
-             contador ++;
-            }
-                
+            moverFrente(casas);
             break;
         case 4:
-            contador = 1;
-            while (contador <= casas)
-            {
-            printf("Torre - trás %d\n", contador);
-            contador ++;
-            }
-                    
+            moverTras(casas);    
             break;
         }
         break;
@@ -82,50 +149,47 @@ printf("você escolheu o bispo:\n");
         printf("escolha uma opção: ");
         scanf("%d", &direcao);
         printf("\n");
-        
+        for (; direcao == 0 || direcao >4;)
+        {
+            printf("opção inválida. Tente novamente\n");
+            printf("\n");
+            printf("Opções para direção da peça:\n");
+            printf("1-diagonal Esquerda frente\n");
+            printf("2-diagonal direita frente\n");
+            printf("3-diagonal esquerda trás\n");
+            printf("4-diagonal direita trás\n");
+            printf("\n");
+            printf("escolha uma opção: ");
+            scanf("%d", &direcao);
+        }
+        printf("\n");
+        printf("escolha a quantidade de casas: ");
+        scanf("%d", &casas);
         
         switch (direcao)
         {
-        case 1:                        
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                
-                for(contador=1; contador<=casas;contador++)
+            case 1: 
+                for ( int i = 1; i <= casas; i++)
                 {
-                    printf("bispo - diagonal esquerda frente %d\n", contador);                
+                    printf("diagonal esquerda frente %d\n", i);
                 }
-                printf("\n");
+                     
             break;
-       
-         case 2:            
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                
-                for(contador=1; contador<=casas;contador++)
+        
+            case 2: 
+                for ( int i = 1; i <= casas; i++)
                 {
-                    printf("bispo - diagonal direita frente %d\n", contador);                
-                }
-                printf("\n");
-            break;  
+                    printf("diagonal direita frente %d\n", i);
+                }            
+                                  
+                      
+            break;
         case 3:            
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                                
-                for(contador=1; contador<=casas;contador++)
-                {
-                    printf("bispo - diagonal esquerda trás %d\n", contador);                
-                }
-                printf("\n");
+            moverDiagonalEsquerdaTras(casas);  
             break; 
+
         case 4:            
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                
-                for(contador=1; contador<=casas;contador++)
-                {
-                    printf("bispo - diagonal direita trás %d\n", contador);                
-                }
-                printf("\n");
+            moverDiagonalDireitaTras(casas); 
             break; 
             
         }
@@ -145,93 +209,63 @@ printf("você escolheu a rainha:\n");
         printf("\n");
         printf("escolha uma opção: ");
         scanf("%d", &direcao);
+        for (; direcao == 0 || direcao >8;)
+        {
+            printf("opção inválida. Tente novamente\n");
+            printf("\n");
+            printf("Opções para direção da peça:\n");
+            printf("1-diagonal Esquerda frente\n");
+            printf("2-diagonal direita frente\n");
+            printf("3-diagonal esquerda trás\n");
+            printf("4-diagonal direita trás\n");
+            printf("5-esquerda\n");
+            printf("6-direita\n");
+            printf("7-frente\n");
+            printf("8-trás\n");
+            printf("\n");
+            printf("escolha uma opção: ");
+            scanf("%d", &direcao);
+        }
         printf("\n");
-        
+        printf("escolha a quantidade de casas: ");
+        scanf("%d", &casas);
         
         switch (direcao)
         {
-        case 1:                        
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                
-                for(contador=1; contador<=casas;contador++)
-                {
-                    printf("rainha - diagonal esquerda frente %d\n", contador);                
-                }
-                printf("\n");
-            break;
-        
-        case 2:            
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                
-                for(contador=1; contador<=casas;contador++)
-                {
-                    printf("rainha - diagonal direita frente %d\n", contador);                
-                }
-                printf("\n");
+            case 1:                        
+                moverDiagonalEsquerdaFrente(casas);           
+            break; 
+
+            case 2:            
+                moverDiagonalDireitaFrente(casas);        
             break;  
-        case 3:            
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                                
-                for(contador=1; contador<=casas;contador++)
-                {
-                    printf("rainha -diagonal esquerda trás %d\n", contador);                
-                }
-                printf("\n");
+
+            case 3:            
+                moverDiagonalEsquerdaTras(casas);  
             break; 
-        case 4:            
-            printf("escolha a quantidade de casas: ");
-            scanf("%d", &casas);
-                
-                for(contador=1; contador<=casas;contador++)
-                {
-                    printf("rainha - diagonal direita trás %d\n", contador);                
-                }
-                printf("\n");
+
+            case 4:            
+                moverDiagonalDireitaTras(casas); 
             break; 
-        case 5:            
-        printf("escolha a quantidade de casas: ");
-        scanf("%d", &casas);
             
-            for(contador=1; contador<=casas;contador++)
-            {
-                printf("rainha - esquerda %d\n", contador);                
-            }
-            printf("\n");
-        break; 
-        case 6:            
-        printf("escolha a quantidade de casas: ");
-        scanf("%d", &casas);
+            case 5:
+            moverEsquerda(casas);        
+            break;
+
+            case 6:
+                moverDireita(casas);           
+            break;
+
+            case 7:
+                moverFrente(casas);
+            break;
+
+            case 8:
+                moverTras(casas);    
+            break;
             
-            for(contador=1; contador<=casas;contador++)
-            {
-                printf("rainha - direita %d\n", contador);                
-            }
-            printf("\n");
-        break; 
-        case 7:            
-        printf("escolha a quantidade de casas: ");
-        scanf("%d", &casas);
-            
-            for(contador=1; contador<=casas;contador++)
-            {
-                printf("rainha - frente %d\n", contador);                
-            }
-            printf("\n");
-        break;
-        case 8:            
-        printf("escolha a quantidade de casas: ");
-        scanf("%d", &casas);
-            
-            for(contador=1; contador<=casas;contador++)
-            {
-                printf("rainha - trás %d\n", contador);                
-            }
-            printf("\n");
-        break;
         }
+        break;
 case 4:
 printf("você escolheu a cavalo:\n");
         printf("\n");
@@ -248,7 +282,24 @@ printf("você escolheu a cavalo:\n");
         printf("escolha uma opção: ");
         scanf("%d", &direcao);
         printf("\n");
-        
+        for (; direcao == 0 || direcao >8;)
+        {
+            printf("opção inválida. Tente novamente\n");
+            printf("\n");
+            printf("Opções para direção da peça:\n");
+            printf("1-esquerda acima\n");
+            printf("2-esquerda abaixo\n");
+            printf("3-direita acima\n");
+            printf("4-direita abaixo\n");
+            printf("5-acima esquerda\n");
+            printf("6-acima direita\n");
+            printf("7-abaixo esquerda\n");
+            printf("8-abaixo direita\n");
+            printf("\n");
+            printf("escolha uma opção: ");
+            scanf("%d", &direcao);
+            printf("\n");
+        }
         
         switch (direcao)
         {
@@ -368,6 +419,99 @@ printf("você escolheu a cavalo:\n");
                         
             break; 
 
-        }              
+        }  
+        break;
+case 5:
+    printf("você escolheu o peão:\n");
+    printf("\n");
+    printf("Escolha a direção da peça (apenas número)\n");
+    printf("1-Diagonal Esquerda frente\n");
+    printf("2-diagonal direita frente\n");
+    printf("3-frente\n");
+    scanf("%d", &direcao);   
+    printf("\n");
+    for (; direcao == 0 || direcao >3;)
+        {
+        printf("opção inválida. Tente novamente\n");
+        printf("\n");
+        printf("Escolha a direção da peça (apenas número)\n");
+        printf("1-Diagonal Esquerda frente\n");
+        printf("2-diagonal direita frente\n");
+        printf("3-frente\n");
+        scanf("%d", &direcao);   
+        printf("\n");
+            
+        }
+    printf("escolha a quantidade de casas (1 ou 2): ");
+    scanf("%d", &casas);
+    switch (direcao)
+    {
+    case 1:
+        moverDiagonalEsquerdaFrente(casas);
+    break;
+    case 2:
+        moverDiagonalDireitaFrente(casas);
+    break;
+    case 3:
+        moverFrente(casas);
+    break;
+    }
+    break;
+ case 6:
+    printf("você escolheu o rei:\n");
+    printf("\n");
+    printf("Escolha a direção da peça (apenas número)\n");
+    printf("1-Diagonal frente Esquerda\n");
+    printf("2-diagonal frente direita\n");
+    printf("3-frente\n");
+    printf("4-trás\n");
+    printf("5-esquerda\n");
+    printf("6-direita\n");
+    scanf("%d", &direcao);   
+    printf("\n");
+    for (; direcao == 0 || direcao >6;)
+        {
+        printf("opção inválida. Tente novamente\n");
+        printf("\n");
+        printf("Escolha a direção da peça (apenas número)\n");
+        printf("1-Diagonal frente Esquerda\n");
+        printf("2-diagonal frente direita\n");
+        printf("3-frente\n");
+        printf("4-trás\n");
+        printf("5-esquerda\n");
+        printf("6-direita\n");
+        scanf("%d", &direcao);   
+        printf("\n");
+            
+        }
+    casas = 1;
+
+    switch (direcao)
+    {
+    case 1:
+        moverDiagonalEsquerdaFrente(casas);
+    break;
+    case 2:
+        moverDiagonalDireitaFrente(casas);
+    break;
+    case 3:
+        moverFrente(casas);
+    break;
+    case 4:
+        moverTras(casas);
+    break;
+    case 5:
+        moverEsquerda(casas);
+    break;
+    case 6:
+        moverDireita(casas);
+    break;
+    default:
+        printf("opção inválida.");
+    break;
+    }
+            
+    
+             
 }
 }
